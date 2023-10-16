@@ -4,30 +4,6 @@ const filePath2 = "./data/file2.json";
 const filePath3 = "./data/file3.json";
 
 function problem1() {
-  function createJsonFiles(filePath1, filePath2, filePath3) {
-    fs.writeFile(filePath1, "", (err) => {
-      if (err) {
-        console.log("error in writing file");
-      } else {
-        console.log("File1 wrote succssfully");
-      }
-    });
-    fs.writeFile(filePath2, "", (err) => {
-      if (err) {
-        console.log("error in writing file");
-      } else {
-        console.log("File2 wrote succssfully");
-      }
-    });
-    fs.writeFile(filePath3, "", (err) => {
-      if (err) {
-        console.log("error in writing file");
-      } else {
-        console.log("File3 wrote succssfully");
-      }
-    });
-  }
-
   function deleteAllFiles() {
     fs.unlink(filePath1, (err) => {
       if (err) {
@@ -52,7 +28,31 @@ function problem1() {
     });
   }
 
-  createJsonFiles(filePath1, filePath2, filePath3);
-  deleteAllFiles();
+  function createJsonFiles(deleteAllFiles) {
+    fs.writeFile(filePath1, "", (err) => {
+      if (err) {
+        console.log("error in writing file");
+      } else {
+        console.log("File1 wrote succssfully");
+        fs.writeFile(filePath2, "", (err) => {
+          if (err) {
+            console.log("error in writing file");
+          } else {
+            console.log("File2 wrote succssfully");
+            fs.writeFile(filePath3, "", (err) => {
+              if (err) {
+                console.log("error in writing file");
+              } else {
+                console.log("File3 wrote succssfully");
+                deleteAllFiles();
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+
+  createJsonFiles(deleteAllFiles);
 }
 module.exports = problem1;
