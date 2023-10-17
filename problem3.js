@@ -4,7 +4,7 @@ const filePath2 = "./data/file2.json";
 const filePath3 = "./data/file3.json";
 const filePaths = [filePath1, filePath2, filePath3];
 
-function problem2() {
+function problem3() {
   function dataCreate() {
     return Promise.all(
       filePaths.map(
@@ -17,7 +17,7 @@ function problem2() {
                 res();
               });
               if (file === filePath3) {
-                res();
+                res(true);
                 return;
               }
             } catch (err) {
@@ -39,8 +39,12 @@ function problem2() {
       });
     });
   }
-  dataCreate().then(() => {
-    dataDelete();
-  });
+  async function handlePromise() {
+    const res = await dataCreate();
+    if (res) {
+      dataDelete();
+    }
+  }
+  handlePromise();
 }
-module.exports = problem2;
+module.exports = problem3;
