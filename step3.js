@@ -29,7 +29,7 @@ async function step3() {
                       rej();
                     } else {
                       newFileNames.push("./data/" + index + ".txt");
-                      if (index == result.length - 1) {
+                      if (newFileNames.length == result.length) {
                         res(newFileNames);
                       }
                     }

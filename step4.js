@@ -8,6 +8,7 @@ async function step4() {
     newFileNames.map((name, index) => {
       fs.readFile(name, "utf-8", (err, data) => {
         if (err) {
+          console.log("could not read file " + name);
         } else {
           toSortArr.push(data);
           if (index == newFileNames.length - 1) {
@@ -35,6 +36,7 @@ async function step4() {
                 }
               }
             );
+          } else {
           }
         }
       });
