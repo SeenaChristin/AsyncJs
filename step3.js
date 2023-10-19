@@ -11,7 +11,8 @@ async function step3() {
         console.log(err + "Could not read file");
         rej();
       } else {
-        result = data.match(/[^\.!\?]+[\.!\?]+/g);
+        let lowerCase = data.toLowerCase();
+        result = lowerCase.match(/[^\.!\?]+[\.!\?]+/g);
         result.map((sentence, index) => {
           fs.writeFile(
             "./data/" + index + ".txt",
